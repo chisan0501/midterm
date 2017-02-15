@@ -8,7 +8,7 @@ namespace MidTerm_KaManMak
 {
     class programmer_associate : Employee
     {
-        public programmer_associate(int id, string last, string first, DateTime dob, DateTime hire, decimal salary) : base(id, last, first, dob, hire, salary)
+        public programmer_associate(int id, string job,string last, string first, DateTime dob, DateTime hire, decimal salary) : base(id, job,last, first, dob, hire, salary)
         {
         }
     }

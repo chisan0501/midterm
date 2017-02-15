@@ -8,9 +8,16 @@ namespace MidTerm_KaManMak
 {
     class Sales_Manager : Employee
     {
-        public Sales_Manager(int id, string last, string first, DateTime dob, DateTime hire, decimal salary) : base(id, last, first, dob, hire, salary)
+
+        public Sales_Manager() : base(0,"","","",DateTime.MinValue,DateTime.MinValue,100)
         {
 
+        }
+
+        public Sales_Manager(int id, string job,string last, string first, DateTime dob, DateTime hire, decimal salary,int car_allowance,string totalSalles) : base(id, job,last, first, dob, hire, salary)
+        {
+            this._car_allowance = car_allowance;
+            
         }
         private int _car_allowance;
         public int car_allowance
@@ -25,18 +32,26 @@ namespace MidTerm_KaManMak
             }
         }
 
-        //holds numbre of sales for division
-        private int _number_of_sales;
+        //get total number of sales from department, 
+        //for now ,we assume all sales are done with same department
+        public int get_dept_sales()
+        {
+            int result = 0;
+
+            var data = new data_provider();
+            result = data.get_sales_total();
+
+            return result;
+        }
+
+       
         public int number_of_sales
         {
             get
             {
-                return _number_of_sales;
+                return get_dept_sales();
             }
-            set
-            {
-                _number_of_sales = value;
-            }
+            set{ }
         }
 
         private int _SalesBonus;

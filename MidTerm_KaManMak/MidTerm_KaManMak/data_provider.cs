@@ -16,6 +16,39 @@ namespace MidTerm_KaManMak
 
 
         }
+
+
+        public int get_sales_total()
+        {
+            int result = 0;
+
+            using (SqlConnection conn = new SqlConnection(connection_string))
+            {
+                OpenConnection();
+                try
+                {
+                    string sql = "SELECT SalesTotal FROM Sales";
+                    SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+                    SqlDataReader dr;
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        result += int.Parse(dr["SalesTotal"].ToString());
+
+                    }
+                    dr.Close();
+
+                }
+                catch (SqlException ex)
+                {
+                    // Display error
+                    Console.WriteLine("Error: " + ex.ToString());
+                }
+            }
+
+            return result;
+        }
+
         public Employee get_employee(int employee_id)
         {
             Employee result = new Employee();
@@ -39,7 +72,7 @@ namespace MidTerm_KaManMak
                         var hire = DateTime.Parse(dr["HireDate"].ToString());
                         var DOB = DateTime.Parse( dr["DOB"].ToString());
                         var salary = decimal.Parse(dr["salary"].ToString());
-                        result = new Employee(employee_id,dr["lastName"].ToString(), dr["firstName"].ToString(),DOB,hire, salary);
+                        result = new Employee(employee_id, dr["jobTitle"].ToString(),dr["lastName"].ToString(), dr["firstName"].ToString(),DOB,hire, salary);
                     }
                     dr.Close();
                   

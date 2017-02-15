@@ -8,7 +8,7 @@ namespace MidTerm_KaManMak
 {
     class Sales_Associate : Employee
     {
-        public Sales_Associate(int id, string last, string first, DateTime dob, DateTime hire, decimal salary, double bonus_percent) : base(id, last, first, dob, hire, salary)
+        public Sales_Associate(int id, string job ,string last, string first, DateTime dob, DateTime hire, decimal salary, double bonus_percent) : base(id, job,last, first, dob, hire, salary)
         {
             this._bonus_percent = bonus_percent;
         }

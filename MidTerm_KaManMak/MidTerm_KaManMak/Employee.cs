@@ -8,11 +8,11 @@ namespace MidTerm_KaManMak
 {
     class Employee
     {
-        public Employee() : this(0,"","",DateTime.MinValue,DateTime.MinValue,10)
+        public Employee() : this(0,"","","",DateTime.MinValue,DateTime.MinValue,10)
         {
 
         }
-        public Employee(int id, string last, string first, DateTime dob, DateTime hire, decimal salary)
+        public Employee(int id, string job,string last, string first, DateTime dob, DateTime hire, decimal salary)
         {
             this.ID = id;
             this._last_name = last;
@@ -20,9 +20,11 @@ namespace MidTerm_KaManMak
             this._dob = dob;
             this._hire = hire;
             this._Salary = salary;
+            this._jobTitle = job;
+           
+        }
 
        
-        }
 
         private int _ID = 0;
         public int ID
@@ -45,6 +47,36 @@ namespace MidTerm_KaManMak
                 }
             }
         }
+
+       
+       public int years
+        {
+            get
+            {
+                return get_years_in_company();
+                    
+                    
+                    }
+            set { }
+        }
+
+
+        public int get_years_in_company()
+        {
+            int result = 0;
+
+            result = DateTime.Now.Year - Hire.Year;
+
+            if ((DateTime.Now.Month < Hire.Month) ||
+           ((DateTime.Now.Month == Hire.Month) &&
+           (DateTime.Now.Day < Hire.Day)))
+            {
+                --result;
+            }
+            return result;
+
+        }
+
 
         private string _jobTitle;
         public string jobTitl
@@ -102,6 +134,9 @@ namespace MidTerm_KaManMak
             }
         }
         private DateTime _dob = DateTime.MinValue;
+        private string last;
+        private string first;
+
         public DateTime Dob
         {
             get
